@@ -82,14 +82,14 @@ function getLicenseLink(license) {
 
 function getLicenseSection(license) {
   if (license === 9)
-    return "This project is not licensed. Copyright rules fully apply. All rights reserved.";
+    return "This project is not licensed. Copyright law fully applies. All rights reserved.";
   else
     return `This project uses the [${getLicenseName(license)}](${getLicenseLink(license)}) license.`;
 }
 
 function getQuestionsSection(gitHub, email) {
   return `[GitHub](https://github.com/${gitHub})
-<email>`
+<${email}>`
 }
 
 function generateMarkdown(response) {

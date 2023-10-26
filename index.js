@@ -26,12 +26,11 @@
 
 // questions, inquirer prompt
 
-// Title "input"
-// Description "input"
-// Table of Contents - nothing, this table contains Title, Description, Installation, Usage, etc. links (I write all this)
-// Installation "editor"
-// Usage "editor"
-// License "list"
+// Description "input" description
+// Table of Contents
+// Installation "editor" installation
+// Usage "editor" usage
+// License "list" license
 
 // MIT [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 // GPLv2 [![License: GPL v2](https://img.shields.io/badge/License-GPL_v2-blue.svg)](https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html)
@@ -44,22 +43,20 @@
 // AGPLv3 [![License: AGPL v3](https://img.shields.io/badge/License-AGPL_v3-blue.svg)](https://www.gnu.org/licenses/agpl-3.0)
 // No license
 
-// Contributing "editor"
-// Tests "editor"
-// Questions "input" for GitHub, "input" for email address
+// Contributing "editor" contributing
+// Tests "editor" tests
+// Questions "input" gitHub, "input" email
 
 const inquirer = require("inquirer");
 const fs = require("fs");
 const generateMarkdown = require("./utils/generateMarkdown.js");
 
-// TODO: Create an array of questions for user input
+// write questions for app
 const questions = [
   {
     type: "input",
-    message: "What is your first name?",
-
-    // "name" is the name of this object, use this to refer to this entire object later
-    name: "firstName"
+    message: "What is the title of this project?",
+    name: "title"
   },
   {
     type: "password",
@@ -68,74 +65,44 @@ const questions = [
   }
 ];
 
-inquirer
-  .prompt([
-    {
-      type: 'input',
-      message: 'What is your user name?',
-      name: 'username',
-    },
-    {
-      type: 'password',
-      message: 'What is your password?',
-      name: 'password',
-    },
-    {
-      type: 'password',
-      message: 'Re-enter password to confirm:',
-      name: 'confirm',
-    },
-  ])
-  .then((response) =>
-    response.confirm === response.password
-      ? console.log('Success!')
-      : console.log('You forgot your password already?!')
-  );
+// inquirer
+//   .prompt([
+//     {
+//       type: "input",
+//       message: "What is your name?",
+//       name: "name"
+//     },
+//     {
+//       type: "list",
+//       message: "What's your favorite language?",
+//       name: "language",
+//       choices: [
+//         {
+//           name: "JavaScript",
+//           value: 1
+//         },
+//         {
+//           name: "PHP",
+//           value: 2
+//         }
+//       ]
+//     },
+//     {
+//       type: "checkbox",
+//       message: "How can we contact you?",
+//       name: "contact",
+//       choices: [
+//         "E-mail",
+//         "Phone",
+//         "Carrier pigeon"
+//       ]
+//     }
+//   ]);
 
-inquirer
-  .prompt([
-    {
-      type: "input",
-      message: "What is your name?",
-      name: "name"
-    },
-    {
-      type: "list",
-      message: "What's your favorite language?",
-      name: "language",
-      choices: [
-        {
-          name: "JavaScript",
-          value: 1
-        },
-        {
-          name: "PHP",
-          value: 2
-        }
-      ]
-    },
-    {
-      type: "checkbox",
-      message: "How can we contact you?",
-      name: "contact",
-      choices: [
-        "E-mail",
-        "Phone",
-        "Carrier pigeon"
-      ]
-    }
-  ])
-  .then((response) => {
-    fs.appendFile("responses.txt", JSON.stringify(response), (err) => err ? console.error(err) : console.log("responses.txt created!"));
-    console.log(response);
-  });
-
-// TODO: Create a function to write README file
 function writeREADME(contents) {
   fs.writeFile("README.md", JSON.stringify(contents), (err) => { err ? console.error(err) : console.log("README.md created!") });
 }
 
-// TODO: Create a function to initialize app
 async function init() {
   const response = await inquirer.prompt(questions);
   console.log(response); // or JSON.stringify(response);
