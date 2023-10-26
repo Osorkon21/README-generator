@@ -1,12 +1,17 @@
 function getTableOfContents() {
-  return `[Title](#title)
-[Description](#description)
-[Installation](#installation)
-[Usage](#usage)
-[License](#license)
-[Contributing](#contributing)
-[Tests](#tests)
-[Questions](#questions)`
+  return `* [Description](#description)
+
+  * [Installation](#installation)
+  
+  * [Usage](#usage)
+  
+  * [License](#license)
+  
+  * [Contributing](#contributing)
+  
+  * [Tests](#tests)
+  
+  * [Questions](#questions)`
 }
 
 function getLicenseBadge(license) {
@@ -89,45 +94,46 @@ function getLicenseSection(license) {
 
 function getQuestionsSection(gitHub, email) {
   return `[GitHub](https://github.com/${gitHub})
+  
 <${email}>`
 }
 
 function generateMarkdown(response) {
-  return `# ${response.title} ${getLicenseBadge(response.license)} {#title}
+  return `# ${response.title} ${getLicenseBadge(response.license)}
 
-## Description {#description}
+  ## Description
 
-${response.description}
+  ${response.description}
 
-## Table of Contents
+  ## Table of Contents
 
-${getTableOfContents()}
+  ${getTableOfContents()}
 
-## Installation {#installation}
+  ## Installation
 
-${response.installation}
+  ${response.installation}
 
-## Usage {#usage}
+  ## Usage
 
-${response.usage}
+  ${response.usage}
 
-## License {#license}
+  ## License
 
-${getLicenseSection(response.license)}
+  ${getLicenseSection(response.license)}
 
-## Contributing {#contributing}
+  ## Contributing
 
-${response.contributing}
+  ${response.contributing}
 
-## Tests {#tests}
+  ## Tests
 
-${response.tests}
+  ${response.tests}
 
-## Questions {#questions}
+  ## Questions
 
-${getQuestionsSection(response.gitHub, response.email)}
+  ${getQuestionsSection(response.gitHub, response.email)}
 
-`;
+  `;
 }
 
 module.exports = generateMarkdown;

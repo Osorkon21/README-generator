@@ -24,28 +24,6 @@
 
 //     * Include any other screenshots you deem necessary to help someone who has never been introduced to your application understand the purpose and function of it.This is how you will communicate to potential employers or other developers in the future what you built and why, and to show how it works.
 
-// questions, inquirer prompt
-
-// Description "input" description
-// Table of Contents
-// Installation "editor" installation
-// Usage "editor" usage
-// License "list" license
-
-// MIT [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-// GPLv2 [![License: GPL v2](https://img.shields.io/badge/License-GPL_v2-blue.svg)](https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html)
-// Apache [![License: Apache 2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
-// GPLv3 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
-// BSD 3-clause [![License: BSD 3-clause](https://img.shields.io/badge/License-BSD_3--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)
-// Unlicense [![License: Unlicense](https://img.shields.io/badge/license-Unlicense-blue.svg)](https://opensource.org/license/unlicense/)
-// BSD 2-clause [![License: BSD 2-clause](https://img.shields.io/badge/License-BSD_2--Clause-orange.svg)](https://opensource.org/licenses/BSD-2-Clause)
-// LGPLv3 [![License: LGPL v3](https://img.shields.io/badge/License-LGPL_v3-blue.svg)](https://www.gnu.org/licenses/lgpl-3.0)
-// AGPLv3 [![License: AGPL v3](https://img.shields.io/badge/License-AGPL_v3-blue.svg)](https://www.gnu.org/licenses/agpl-3.0)
-// No license
-
-// Contributing "editor" contributing
-// Tests "editor" tests
-// Questions "input" gitHub, "input" email
 
 const inquirer = require("inquirer");
 const fs = require("fs");
@@ -59,48 +37,91 @@ const questions = [
     name: "title"
   },
   {
-    type: "password",
-    message: "What is your password?",
-    name: "password"
+    type: "input",
+    message: "Enter a description of your project.",
+    name: "description"
+  },
+  {
+    type: "input",
+    message: "Enter installation instructions for your project.",
+    name: "installation"
+  },
+  {
+    type: "input",
+    message: "Enter usage instructions for your project.",
+    name: "usage"
+  },
+  {
+    type: "list",
+    message: "Choose a license for your project.",
+    name: "license",
+    choices: [
+      {
+        name: "MIT",
+        value: 0
+      },
+      {
+        name: "GPLv2",
+        value: 1
+      },
+      {
+        name: "Apache 2.0",
+        value: 2
+      },
+      {
+        name: "GPLv3",
+        value: 3
+      },
+      {
+        name: "BSD 3-clause",
+        value: 4
+      },
+      {
+        name: "Unlicense",
+        value: 5
+      },
+      {
+        name: "BSD 2-clause",
+        value: 6
+      },
+      {
+        name: "LGPLv3",
+        value: 7
+      },
+      {
+        name: "AGPLv3",
+        value: 8
+      },
+      {
+        name: "No license",
+        value: 9
+      },
+    ]
+  },
+  {
+    type: "input",
+    message: "Enter contribution instructions for your project.",
+    name: "contributing"
+  },
+  {
+    type: "input",
+    message: "Enter test instructions for your project.",
+    name: "tests"
+  },
+  {
+    type: "input",
+    message: "Enter your GitHub username.",
+    name: "gitHub"
+  },
+  {
+    type: "input",
+    message: "Enter your email address.",
+    name: "email"
   }
 ];
 
-// inquirer
-//   .prompt([
-//     {
-//       type: "input",
-//       message: "What is your name?",
-//       name: "name"
-//     },
-//     {
-//       type: "list",
-//       message: "What's your favorite language?",
-//       name: "language",
-//       choices: [
-//         {
-//           name: "JavaScript",
-//           value: 1
-//         },
-//         {
-//           name: "PHP",
-//           value: 2
-//         }
-//       ]
-//     },
-//     {
-//       type: "checkbox",
-//       message: "How can we contact you?",
-//       name: "contact",
-//       choices: [
-//         "E-mail",
-//         "Phone",
-//         "Carrier pigeon"
-//       ]
-//     }
-//   ]);
-
 function writeREADME(contents) {
-  fs.writeFile("README.md", JSON.stringify(contents), (err) => { err ? console.error(err) : console.log("README.md created!") });
+  fs.writeFile("README.md", contents, (err) => { err ? console.error(err) : console.log("README.md created!") });
 }
 
 async function init() {
