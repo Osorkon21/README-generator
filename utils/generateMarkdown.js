@@ -1,18 +1,131 @@
-// TODO: Create a function that returns a license badge based on which license is passed in
-// If there is no license, return an empty string
-function renderLicenseBadge(license) {}
+function getTableOfContents() {
+  return `[Title](#title)
+[Description](#description)
+[Installation](#installation)
+[Usage](#usage)
+[License](#license)
+[Contributing](#contributing)
+[Tests](#tests)
+[Questions](#questions)`
+}
 
-// TODO: Create a function that returns the license link
-// If there is no license, return an empty string
-function renderLicenseLink(license) {}
+function getLicenseBadge(license) {
+  switch (license) {
+    case 0:
+      return `[![License: ${getLicenseName(license)}](https://img.shields.io/badge/License-MIT-yellow.svg)](${getLicenseLink(license)})`;
+    case 1:
+      return `[![License: ${getLicenseName(license)}](https://img.shields.io/badge/License-GPL_v2-blue.svg)](${getLicenseLink(license)})`;
+    case 2:
+      return `[![License: ${getLicenseName(license)}](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](${getLicenseLink(license)})`;
+    case 3:
+      return `[![License: ${getLicenseName(license)}](https://img.shields.io/badge/License-GPLv3-blue.svg)](${getLicenseLink(license)})`;
+    case 4:
+      return `[![License: ${getLicenseName(license)}](https://img.shields.io/badge/License-BSD_3--Clause-blue.svg)](${getLicenseLink(license)})`;
+    case 5:
+      return `[![License: ${getLicenseName(license)}](https://img.shields.io/badge/license-Unlicense-blue.svg)](${getLicenseLink(license)})`;
+    case 6:
+      return `[![License: ${getLicenseName(license)}](https://img.shields.io/badge/License-BSD_2--Clause-orange.svg)](${getLicenseLink(license)})`;
+    case 7:
+      return `[![License: ${getLicenseName(license)}](https://img.shields.io/badge/License-LGPL_v3-blue.svg)](${getLicenseLink(license)})`;
+    case 8:
+      return `[![License: ${getLicenseName(license)}](https://img.shields.io/badge/License-AGPL_v3-blue.svg)](${getLicenseLink(license)})`;
+    default:
+      return "";
+  }
+}
 
-// TODO: Create a function that returns the license section of README
-// If there is no license, return an empty string
-function renderLicenseSection(license) {}
+function getLicenseName(license) {
+  switch (license) {
+    case 0:
+      return "MIT";
+    case 1:
+      return "GPL v2";
+    case 2:
+      return "Apache 2.0";
+    case 3:
+      return "GPL v3";
+    case 4:
+      return "BSD 3-clause";
+    case 5:
+      return "Unlicense";
+    case 6:
+      return "BSD 2-clause";
+    case 7:
+      return "LGPL v3";
+    case 8:
+      return "AGPL v3";
+  }
+}
 
-// TODO: Create a function to generate markdown for README
-function generateMarkdown(data) {
-  return `# ${data.title}
+function getLicenseLink(license) {
+  switch (license) {
+    case 0:
+      return "https://opensource.org/licenses/MIT";
+    case 1:
+      return "https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html";
+    case 2:
+      return "https://opensource.org/licenses/Apache-2.0";
+    case 3:
+      return "https://www.gnu.org/licenses/gpl-3.0";
+    case 4:
+      return "https://opensource.org/licenses/BSD-3-Clause";
+    case 5:
+      return "https://opensource.org/license/unlicense/";
+    case 6:
+      return "https://opensource.org/licenses/BSD-2-Clause";
+    case 7:
+      return "https://www.gnu.org/licenses/lgpl-3.0";
+    case 8:
+      return "https://www.gnu.org/licenses/agpl-3.0";
+  }
+}
+
+function getLicenseSection(license) {
+  if (license === 9)
+    return "This project is not licensed. Copyright rules fully apply. All rights reserved.";
+  else
+    return `This project uses the [${getLicenseName(license)}](${getLicenseLink(license)}) license.`;
+}
+
+function getQuestionsSection(gitHub, email) {
+  return `[GitHub](https://github.com/${gitHub})
+<email>`
+}
+
+function generateMarkdown(response) {
+  return `# ${response.title} ${getLicenseBadge(response.license)} {#title}
+
+## Description {#description}
+
+${response.description}
+
+## Table of Contents
+
+${getTableOfContents()}
+
+## Installation {#installation}
+
+${response.installation}
+
+## Usage {#usage}
+
+${response.usage}
+
+## License {#license}
+
+${getLicenseSection(response.license)}
+
+## Contributing {#contributing}
+
+${response.contributing}
+
+## Tests {#tests}
+
+${response.tests}
+
+## Questions {#questions}
+
+${getQuestionsSection(response.gitHub, response.email)}
 
 `;
 }
