@@ -1,18 +1,9 @@
-
-// ## Getting Started
-
-// * Include a video of the typical user flow through your application. This includes views of the prompts and the responses after their selection.
-
-// * Refer to the[Fullstack Blog Video Submission Guide](https://coding-boot-camp.github.io/full-stack/computer-literacy/video-submission-guide) for additional guidance on creating a video.
-
-//     * Include any other screenshots you deem necessary to help someone who has never been introduced to your application understand the purpose and function of it.This is how you will communicate to potential employers or other developers in the future what you built and why, and to show how it works.
-
-
+// import inquirer, node filesystem, and generateMarkdown function
 const inquirer = require("inquirer");
 const fs = require("fs");
 const generateMarkdown = require("./utils/generateMarkdown.js");
 
-// write questions for app
+// questions for the command-line prompts
 const questions = [
   {
     type: "input",
@@ -103,14 +94,17 @@ const questions = [
   }
 ];
 
+// creates new README.md file and writes its contents
 function writeREADME(contents) {
   fs.writeFile("README.md", contents, (err) => { err ? console.error(err) : console.log("README.md created!") });
 }
 
+// prompts the user for input, generates Markdown based on that input, and writes Markdown to a new README.md file
 async function init() {
   const response = await inquirer.prompt(questions);
   const contents = generateMarkdown(response);
   writeREADME(contents);
 }
 
+// function called when index.js is run
 init();
