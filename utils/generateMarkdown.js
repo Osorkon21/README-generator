@@ -1,3 +1,4 @@
+// generates Table of Contents for README
 function getTableOfContents() {
   return `* [Description](#description)
 
@@ -14,6 +15,7 @@ function getTableOfContents() {
   * [Questions](#questions)`
 }
 
+// generates badge image and link for project's license
 function getLicenseBadge(license) {
   switch (license) {
     case 0:
@@ -39,6 +41,7 @@ function getLicenseBadge(license) {
   }
 }
 
+// gets name for project's license
 function getLicenseName(license) {
   switch (license) {
     case 0:
@@ -62,6 +65,7 @@ function getLicenseName(license) {
   }
 }
 
+// gets URL for project's license
 function getLicenseLink(license) {
   switch (license) {
     case 0:
@@ -85,6 +89,7 @@ function getLicenseLink(license) {
   }
 }
 
+// generates project's license info for README
 function getLicenseSection(license) {
   if (license === 9)
     return "This project is not licensed. Copyright law fully applies. All rights reserved.";
@@ -92,12 +97,14 @@ function getLicenseSection(license) {
     return `This project uses the [${getLicenseName(license)}](${getLicenseLink(license)}) license.`;
 }
 
+// generates contact info for README
 function getQuestionsSection(gitHub, email) {
-  return `[GitHub](https://github.com/${gitHub})
+  return `[${gitHub}'s GitHub Profile](https://github.com/${gitHub})
   
-<${email}>`
+Email any additional questions to <${email}>`
 }
 
+// generates pre-formatted README contents
 function generateMarkdown(response) {
   return `# ${response.title} ${getLicenseBadge(response.license)}
 
@@ -136,4 +143,5 @@ function generateMarkdown(response) {
   `;
 }
 
+// export generateMarkdown function
 module.exports = generateMarkdown;
